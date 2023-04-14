@@ -34,7 +34,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.reuseId, for: indexPath) as? MainViewCell else {
             return UITableViewCell()
         }
-        
+        cell.configureCell(data: ContactsCategory.allCases[indexPath.row])
         return cell
     }
     
