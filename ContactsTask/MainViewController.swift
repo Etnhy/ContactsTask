@@ -12,13 +12,13 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         title = "Contacts"
+        setupTableView()
     }
     
     
     private func setupTableView() {
-        tableView.register(MainViewCell.self, forCellReuseIdentifier: MainViewCell.reuseId)
+        tableView.register(UINib(nibName: "MainViewCell", bundle: nil), forCellReuseIdentifier: MainViewCell.reuseId)
     }
 
 
@@ -38,6 +38,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     
 }
 
