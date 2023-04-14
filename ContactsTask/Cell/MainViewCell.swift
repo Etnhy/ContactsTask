@@ -17,13 +17,19 @@ class MainViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         // Initialization code
     }
     
     func configureCell(data: ContactsCategory) {
         self.mainImage.image = UIImage(systemName: data.image)
         self.title.text = data.title
+//        self.countLabel.text = data.cout
         
+    }
+    
+    func setCount(countString: String) {
+        self.countLabel.text = countString
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

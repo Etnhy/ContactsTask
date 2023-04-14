@@ -10,14 +10,18 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+     var presenter: MainPresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Contacts"
         setupTableView()
+        self.presenter = MainPresenter(view: self)
     }
     
     
     private func setupTableView() {
+        
         tableView.register(UINib(nibName: "MainViewCell", bundle: nil), forCellReuseIdentifier: MainViewCell.reuseId)
     }
 
@@ -34,7 +38,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.reuseId, for: indexPath) as? MainViewCell else {
             return UITableViewCell()
         }
+        
         cell.configureCell(data: ContactsCategory.allCases[indexPath.row])
+        cell.setCount(countString: presenter?.conCount(cat: ContactsCategory.allCases[indexPath.row]) ?? "err")
         return cell
     }
     
@@ -42,38 +48,16 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return 60
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(ContactsCategory.allCases[indexPath.row].title)
+        
+        let detailVC = UIStoryboard(name: "DetailViewController", bundle: Bundle(identifier: DetailViewController.reuseId)).instantiateViewController(
+            withIdentifier: DetailViewController.reuseId) as! DetailViewController
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 }
 
-
-enum ContactsCategory: CaseIterable {
-    case all
-    case repeats
-    case duplicates
-    case withoutNames
-    case withoutNumbers
-    case withoutEmail
+extension MainViewController: ViewProtocol {
     
-    
-    
-    var image: String {
-        switch self {
-        case .all: return "person.circle"
-        case .repeats: return "person.3"
-        case .duplicates: return "phone"
-        case .withoutNames: return "person.crop.circle.badge.questionmark"
-        case .withoutNumbers: return "iphone.gen2.slash"
-        case .withoutEmail: return "envelope"
-        }
-    }
-    
-    var title: String {
-        switch self {
-        case .all:return "Контакты"
-        case .repeats:return "Повторяющиеся имена"
-        case .duplicates:return "Дубликаты номеров"
-        case .withoutNames:return "Без имени"
-        case .withoutNumbers:return "Нет номера"
-        case .withoutEmail:return "Нет электронной почты"
-        }
-    }
 }
