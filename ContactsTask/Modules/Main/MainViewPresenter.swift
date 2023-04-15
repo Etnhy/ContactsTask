@@ -24,23 +24,18 @@ class MainPresenter: MainPresenterProtocol {
     
     
     private var phoneContacts = PhoneContacts()
-    
-    var phoneContactArray = [PhoneContact]() // array of PhoneContact(It is model find it below)
-    var filter: ContactsCategory = .duplicates
-
-    
-   private let cncontacts = PhoneContacts.shared.getContacts()
+    private let cncontacts = PhoneContacts.getContacts()
     
     required init(view: ViewProtocol) {
         self.view = view
     }
     
-    private func fetchAllContacts() -> String {
-        let countContacts = cncontacts.count
-        return "\(countContacts)"
+    private func fetchAllContacts() -> [CNContact] {
+        let countContacts = cncontacts
+        return countContacts
     }
     
-    private func fethWithoutNameContacts() -> String {
+    private func fethWithoutNameContacts() -> [CNContact] {
         var withoutNames: [CNContact] = []
         
         for cncontact in cncontacts {
@@ -48,10 +43,10 @@ class MainPresenter: MainPresenterProtocol {
                 withoutNames.append(cncontact)
             }
         }
-        return "\(withoutNames.count)"
+        return withoutNames
     }
     
-    private func fetchWithoutEmail() -> String {
+    private func fetchWithoutEmail() -> [CNContact] {
         var withoutEmail: [CNContact] = []
         
         for cncontact in cncontacts {
@@ -59,11 +54,11 @@ class MainPresenter: MainPresenterProtocol {
                 withoutEmail.append(cncontact)
             }
         }
-        return "\(withoutEmail.count)"
+        return withoutEmail
 
     }
     
-    private func fetchWithoutNumber() -> String {
+    private func fetchWithoutNumber() -> [CNContact] {
         var withoutNumber: [CNContact] = []
         
         for cncontact in cncontacts {
@@ -71,33 +66,32 @@ class MainPresenter: MainPresenterProtocol {
                 withoutNumber.append(cncontact)
             }
         }
-        return "\(withoutNumber.count)"
+        return withoutNumber
     }
 
-    private func fetchDuplicateNumbers() -> String {
+    private func fetchDuplicateNumbers() -> [CNContact] {
         let singlePhones = Set(Dictionary(grouping: cncontacts, by: {$0.phoneNumbers}).filter{$0.1.count == 1}.map{$0.0})
-        let contacts2 = cncontacts.filter {!singlePhones.contains($0.phoneNumbers)}
+        let duplicateNumbers = cncontacts.filter {!singlePhones.contains($0.phoneNumbers)}
 
-        return "\(contacts2.count)"
+        return duplicateNumbers
     }
     
-    private func fetchDuplicateNames() -> String {
+    private func fetchDuplicateNames() -> [CNContact] {
         let singlePhones = Set(Dictionary(grouping: cncontacts, by: {$0.givenName}).filter{$0.1.count == 1}.map{$0.0})
-        
-        let contacts2 = cncontacts.filter {!singlePhones.contains($0.givenName)}
-        return "\(contacts2.count)"
+        let duplicateNames = cncontacts.filter {!singlePhones.contains($0.givenName)}
+        return duplicateNames
     }
 
     func conCount(cat: ContactsCategory) -> String {
-        switch cat {
-        case .all: return fetchAllContacts()
-        case .repeats: return fetchDuplicateNames()
-        case .duplicates: return fetchDuplicateNumbers()
-        case .withoutNames: return fethWithoutNameContacts()
-        case .withoutNumbers: return fetchWithoutNumber()
-        case .withoutEmail: return fetchWithoutEmail()
-        }
-        
+//        switch cat {
+//        case .all: return fetchAllContacts()
+//        case .repeats: return fetchDuplicateNames()
+//        case .duplicates: return fetchDuplicateNumbers()
+//        case .withoutNames: return fethWithoutNameContacts()
+//        case .withoutNumbers: return fetchWithoutNumber()
+//        case .withoutEmail: return fetchWithoutEmail()
+//        }
+        return ""
     }
     
     func fetchContacts() {
