@@ -23,6 +23,7 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     func conCount(cat: ContactsCategory) -> [CNContact] {
+        
         switch cat {
         case .all: return fetchAllContacts()
         case .repeats: return fetchDuplicateNames()

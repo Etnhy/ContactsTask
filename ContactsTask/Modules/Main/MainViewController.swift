@@ -13,12 +13,15 @@ class MainViewController: UIViewController {
     
      var presenter: MainPresenter?
     weak var delegate: ContactsToDetail?
-    
+    private let cont = CNContactStore()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         title = "Contacts"
         setupTableView()
         self.presenter = MainPresenter(view: self)
+        
     }
     
     
@@ -42,9 +45,13 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.configureCell(data: ContactsCategory.allCases[indexPath.row])
-        cell.setCount(
-            contacts: presenter?.conCount(
-                cat: ContactsCategory.allCases[indexPath.row]) ?? [])
+
+        DispatchQueue.main.async {
+            cell.setCount(
+                contacts: self.presenter?.conCount(
+                    cat: ContactsCategory.allCases[indexPath.row]) ?? [])
+
+        }
         return cell
     }
     
