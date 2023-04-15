@@ -41,14 +41,4 @@ enum ContactsCategory: CaseIterable {
         case .withoutEmail:return "Нет электронной почты"
         }
     }
-//    var cout: String {
-//        switch self {
-//        case .all: return "\(10)"
-//        case .repeats: return "\(4)"
-//        case .duplicates: return "\(2)"
-//        case .withoutNames: return "\(0)"
-//        case .withoutNumbers: return "\(6)"
-//        case .withoutEmail: return "\(0)"
-//        }
-//    }
 }

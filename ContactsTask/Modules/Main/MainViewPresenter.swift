@@ -9,22 +9,6 @@ import Foundation
 import ContactsUI
 import Contacts
 
-protocol ViewProtocol: AnyObject {
-}
-
-protocol MainPresenterProtocol: AnyObject {
-    init(view: ViewProtocol)
-        func fetchContacts()
-}
-
-protocol FetchContactsCategory: AnyObject {
-    func fetchAllContacts()         -> [CNContact]
-    func fethWithoutNameContacts()  -> [CNContact]
-    func fetchWithoutEmail()        -> [CNContact]
-    func fetchWithoutNumber()       -> [CNContact]
-    func fetchDuplicateNumbers()    -> [CNContact]
-    func fetchDuplicateNames()      -> [CNContact]
-}
 
 class MainPresenter: MainPresenterProtocol {
 
@@ -38,19 +22,19 @@ class MainPresenter: MainPresenterProtocol {
         self.view = view
     }
     
-    func conCount(cat: ContactsCategory) -> String {
+    func conCount(cat: ContactsCategory) -> [CNContact] {
         switch cat {
-        case .all: return "\(fetchAllContacts().count)"
-        case .repeats: return "\(fetchDuplicateNames().count)"
-        case .duplicates: return "\(fetchDuplicateNumbers().count)"
-        case .withoutNames: return "\(fethWithoutNameContacts().count)"
-        case .withoutNumbers: return "\(fetchWithoutNumber().count)"
-        case .withoutEmail: return "\(fetchWithoutEmail().count)"
+        case .all: return fetchAllContacts()
+        case .repeats: return fetchDuplicateNames()
+        case .duplicates: return fetchDuplicateNumbers()
+        case .withoutNames: return fethWithoutNameContacts()
+        case .withoutNumbers: return fetchWithoutNumber()
+        case .withoutEmail: return fetchWithoutEmail()
         }
     }
     
-    func fetchContacts() {
-        
+    func fetchContacts() -> [CNContact] {
+        return cncontacts
     }
 }
 

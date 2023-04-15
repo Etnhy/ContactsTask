@@ -20,6 +20,7 @@
 		7A555D9829E9B9F1003B521F /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A555D9629E9B9F1003B521F /* MainViewCell.xib */; };
 		7A89EADD29EACC7500A637F9 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A89EADB29EACC7500A637F9 /* DetailCell.swift */; };
 		7A89EADE29EACC7500A637F9 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A89EADC29EACC7500A637F9 /* DetailCell.xib */; };
+		7A89EAE229EAE3CE00A637F9 /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A89EAE129EAE3CE00A637F9 /* MainContract.swift */; };
 		7AD775D729E9FEC500BF7515 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD775D629E9FEC500BF7515 /* DetailViewController.swift */; };
 		7AD775D929E9FF0700BF7515 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AD775D829E9FF0700BF7515 /* DetailViewController.storyboard */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		7A555D9629E9B9F1003B521F /* MainViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
 		7A89EADB29EACC7500A637F9 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		7A89EADC29EACC7500A637F9 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
+		7A89EAE129EAE3CE00A637F9 /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
 		7AD775D629E9FEC500BF7515 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7AD775D829E9FF0700BF7515 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 				7A555D9429E9B9D0003B521F /* MainCell */,
 				7A555D8429E9B523003B521F /* MainViewController.swift */,
 				7A29C4B929E9C0C100514967 /* MainViewPresenter.swift */,
+				7A89EAE129EAE3CE00A637F9 /* MainContract.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				7A29C4BA29E9C0C100514967 /* MainViewPresenter.swift in Sources */,
 				7A555D8129E9B523003B521F /* AppDelegate.swift in Sources */,
 				7A555D8329E9B523003B521F /* SceneDelegate.swift in Sources */,
+				7A89EAE229EAE3CE00A637F9 /* MainContract.swift in Sources */,
 				7A29C4B629E9C09000514967 /* ContactsCategory.swift in Sources */,
 				7A29C4BD29E9C46D00514967 /* PhoneContacts.swift in Sources */,
 				7AD775D729E9FEC500BF7515 /* DetailViewController.swift in Sources */,

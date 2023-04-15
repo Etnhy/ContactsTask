@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ContactsUI
 
 class MainViewCell: UITableViewCell {
     static let reuseId = "MainViewCell"
@@ -14,6 +15,8 @@ class MainViewCell: UITableViewCell {
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var countLabel: UILabel!
+    
+    var contacts: [CNContact] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,12 +27,12 @@ class MainViewCell: UITableViewCell {
     func configureCell(data: ContactsCategory) {
         self.mainImage.image = UIImage(systemName: data.image)
         self.title.text = data.title
-//        self.countLabel.text = data.cout
         
     }
     
-    func setCount(countString: String) {
-        self.countLabel.text = countString
+    func setCount(contacts: [CNContact]) {
+        self.countLabel.text = "\(contacts.count)"
+        self.contacts = contacts
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

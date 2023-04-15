@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Contacts
 
 class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
      var presenter: MainPresenter?
+    weak var delegate: ContactsToDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.configureCell(data: ContactsCategory.allCases[indexPath.row])
-        cell.setCount(countString: presenter?.conCount(cat: ContactsCategory.allCases[indexPath.row]) ?? "err")
+        cell.setCount(
+            contacts: presenter?.conCount(
+                cat: ContactsCategory.allCases[indexPath.row]) ?? [])
         return cell
     }
     
@@ -49,15 +53,23 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(ContactsCategory.allCases[indexPath.row].title)
         
-        let detailVC = UIStoryboard(name: "DetailViewController", bundle: Bundle(identifier: DetailViewController.reuseId)).instantiateViewController(
-            withIdentifier: DetailViewController.reuseId) as! DetailViewController
-        navigationController?.pushViewController(detailVC, animated: true)
+        let toDetail = presenter?.conCount(cat:ContactsCategory.allCases[indexPath.row])
+        
+        if let vc = UIStoryboard(name: "DetailViewController", bundle: Bundle(identifier: DetailViewController.reuseId)).instantiateViewController(identifier: DetailViewController.reuseId) as? DetailViewController {
+            self.delegate = vc
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        self.delegate?.setDetailContacts(cnContacts: toDetail!)
+
     }
     
 }
 
 extension MainViewController: ViewProtocol {
     
+}
+
+protocol ContactsToDetail: AnyObject {
+    func setDetailContacts(cnContacts: [CNContact])
 }
