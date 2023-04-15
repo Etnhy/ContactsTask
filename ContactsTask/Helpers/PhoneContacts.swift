@@ -40,3 +40,53 @@ class PhoneContacts {
             return results
         }
 }
+
+//extension PhoneContacts: FetchContactsCategory {
+//    func fetchAllContacts() -> [CNContact] {
+//        return self.getContacts()
+//    }
+//    func fethWithoutNameContacts() -> [CNContact] {
+//        var withoutNames: [CNContact] = []
+//        
+//        for cncontact in self.getContacts() {
+//            if cncontact.givenName.isEmpty {
+//                withoutNames.append(cncontact)
+//            }
+//        }
+//        return withoutNames
+//    }
+//    
+//    func fetchWithoutEmail() -> [CNContact] {
+//        var withoutEmail: [CNContact] = []
+//        
+//        for cncontact in self.getContacts() {
+//            if cncontact.emailAddresses.isEmpty {
+//                withoutEmail.append(cncontact)
+//            }
+//        }
+//        return withoutEmail
+//
+//    }
+//    
+//    func fetchWithoutNumber() -> [CNContact] {
+//        var withoutNumber: [CNContact] = []
+//        
+//        for cncontact in self.getContacts() {
+//            if cncontact.phoneNumbers.isEmpty {
+//                withoutNumber.append(cncontact)
+//            }
+//        }
+//        return withoutNumber
+//
+//    }
+//    
+//    func fetchDuplicateNumbers() -> [CNContact] {
+//        
+//    }
+//    
+//    func fetchDuplicateNames() -> [CNContact] {
+//        
+//    }
+//    
+//    
+//}
